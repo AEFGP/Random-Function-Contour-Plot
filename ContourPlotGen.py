@@ -2,6 +2,8 @@ from numpy import *
 import matplotlib.pyplot as plt
 import random
 
+
+# List of CMAPS to use in future versions
 CMAPS = [
             'viridis', 'plasma', 'inferno', 'magma',
             'Greys', 'Purples', 'Blues', 'Greens', 'Oranges', 'Reds',
@@ -38,15 +40,17 @@ def cube(x):
 def inverse_cube(x):
     return 1/x**3
 while True:
+    # List of functions that take one argument
     f_x = ['sin', 'cos', 'exp', 'sinh', 'cosh', 'quad', 'cube', 'inverse','inverse_square', 'inverse_cube'
             'tan','gaussian']
     expr = ''
+    # Make an expression for the graph
     for i in range(random.randint(2, 12)):
         expr += random.choice(f_x)+random.choice(['(x) ','(y) '])+random.choice('+-*/')
     expr += '0'
     print(expr)
 
-    def Circle(x,y):
+    def EVAL(x,y):
         return ( eval(expr)) 
 
     xx=linspace(-2,2,100)
@@ -54,7 +58,7 @@ while True:
 
     X,Y =meshgrid(xx,yy)
 
-    Z = array([Circle(i,j) for i in xx for j in yy]).reshape(100,100)
+    Z = array([EVAL(i,j) for i in xx for j in yy]).reshape(100,100)
 
     plt.figure()
     plt.contourf(X,Y,Z,100, cmap='inferno')
